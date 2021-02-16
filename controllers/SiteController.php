@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Comments;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -124,5 +125,19 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+
+    public function actionComment()
+    {
+        $model = new Comments();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('commentFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('comment', [
+            'model' => $model,
+        ]);
     }
 }
