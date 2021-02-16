@@ -2,14 +2,16 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+/* @var $model app\models\Comments */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+use app\assets\Comments\ClientAsset;
 
 $this->title = 'Comment';
 $this->params['breadcrumbs'][] = $this->title;
+
+ClientAsset::register($this);
 ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
